@@ -1,0 +1,49 @@
+* {
+    background-color: #20B2AA;
+}
+.appname {
+    text-align: center;
+    font-size: 50px;
+    margin: auto;
+}
+
+.main {
+    text-align: center;
+    background-color: #20B2AA; 
+}
+
+form {
+    background-color: #20B2AA;
+}
+
+input[type=text] {
+    background-color: #20B2AA;
+    text-align: center;
+}
+
+button {
+    background-color: #4682B4;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.decimal {
+    margin: auto;
+    text-align: center;
+    background-color: #20B2AA;
+
+}
+
+.result {
+    margin: auto;
+    text-align: center;
+    background-color: #20B2AA;
+    padding: 20px;
+    width: 50%;
+    height: 50px;
+  
+}
