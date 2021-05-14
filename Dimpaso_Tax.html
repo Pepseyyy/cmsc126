@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-Dimpaso, Ladeena->
+<html>
+<head>
+	<title>Tax Computation</title>
+
+	<!-Js->
+	<script type="text/javascript">
+
+		function display()
+		{
+			var incomes = document.getElementById("income").value;
+			var dependent = document.getElementById("dependents").value;
+			var grossincome = parseFloat(13 * incomes);
+
+
+			//govt and non-govt deduction
+			if(document.getElementById("yes").checked == true && !(document.getElementById("no").checked == true))
+			{
+				var govtdeduct = parseFloat(12 * 0.09 * incomes);
+			}
+			else if(document.getElementById("no").checked == true && !(document.getElementById("yes").checked == true))
+			{
+				var govtdeduct = parseFloat(12 * 0.11 * incomes);
+			}
+			else
+			{
+				var govtdeduct = false;
+			}
+
+			//dependent Deduction
+			if(dependent >= 1 && dependent <= 4)
+			{
+				var dependentdeduct = parseFloat(dependent * 50000);
+			}
+			else if(dependent > 4)
+			{
+				var dependentdeduct = 200000;
+			}
+			else
+			{
+				var dependentdeduct = 0;
+			}
+
+
+
+			//Pag-ibig deduction
+			var pagibig = parseFloat(12 * incomes * 0.01375);
+
+			//Philhealth deduction
+			var philhealth = parseFloat(12 * incomes * 0.035);
+
+
+			//total deduction
+			var totaldeduct = parseFloat(50000 + dependentdeduct + pagibig + philhealth + govtdeduct);
+
+			//net income
+			var netincome = parseFloat(grossincome - totaldeduct);
+
+			//solving the value of tax
+			if(netincome >= 1 && netincome <= 250000)
+			{
+				var tax = 0;
+			}
+			else if(netincome >= 250001 && netincome <= 400000)
+			{
+				var tax = parseFloat(0.2 * (netincome - 250000));
+			}
+			else if(netincome >= 400001 && netincome <= 800000)
+			{
+				var tax = parseFloat(0.25 * (netincome - 400000)) + 30000;
+			}
+			else if(netincome >= 800001 && netincome <= 2000000)
+			{
+				var tax = parseFloat(0.3 * (netincome - 800000)) + 130000;
+			}
+			else if(netincome >= 2000001 && netincome <= 8000000)
+			{
+				var tax = parseFloat(0.32 * (netincome - 2000000)) + 490000;
+			}
+			else if(netincome > 8000000)
+			{
+				var tax = parseFloat(0.35 * (netincome - 8000000)) + 2410000;
+			}
+
+			if(govtdeduct == false || dependent < 0 || incomes < 0)
+			{
+				document.getElementById("display-result").innerHTML = "Tax to pay: Invalid Result!";
+			}
+			else
+			{
+				document.getElementById("display-result").innerHTML = "Tax to pay: P" + tax.toFixed(2);
+			}
+		}
+
+
+	</script>
+</head>
+
+<body style="text-align: center">
+
+	<h1>Philippine Tax Computation Calculator</h1>
+
+	<br>
+
+	<!-input box->
+	Income: <input type="text" name="income" id="income">
+
+	<br><br><br>
+
+	Number of Dependents: <input type="text" name="dependents" id="dependents">
+
+	<br><br><br>
+
+	Government Employee: Yes <input type="checkbox" name="yes" id="yes" value="true"> No <input type="checkbox" name="no" id="no" value="true">
+ 
+	<br><br><br>
+
+	<button onclick="display()"> Calculate </button>
+
+	<br><br><br>
+
+
+	<!-result->
+	<h1 id="display-result"></h1>
+
+	
+</body> 
+</html>
